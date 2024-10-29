@@ -1,10 +1,26 @@
-
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Header from "./components/reuseable/Header"
+import LoginForm from "./components/reuseable/LoginForm"
+import RegistrationForm from "./components/reuseable/registrationForm"
+import Home from "./components/pages/Home"
+import UserDashboard from "./components/pages/UserDashboard"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 const App = () => {
+
   return (
-    <div className='w-screen h-screen flex justify-center items-center text-[4rem] text-emerald-700 font-bold'>
-      <h1>User Authentication App</h1>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<LoginForm />} />
+        <Route path="/signup" element={<RegistrationForm />} />
+        
+        <Route element={<ProtectedRoute />}>
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

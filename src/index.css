@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body, html{
+    background-color: #0d100c;
+    color: #f9fafb;
+}
+
+@font-face {
+    font-family: helvetica1;
+    src: url(./assets/fonts/HelveticaNowDisplay-Regular_5Mzhp8KlA8_CAVTbnsPOM.woff2);
+}
