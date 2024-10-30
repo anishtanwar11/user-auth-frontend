@@ -8,12 +8,17 @@ const LogoutButton = () => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
+    const options = {
+      method: 'POST',
+      url: API_ENDPOINTS.logout,
+      headers: { 
+        "Content-Type": "application/json", 
+        accept: 'application/json' 
+      },
+      withCredentials: true,  // Include credentials (cookies) in the request
+    };
     try {
-      const response = await axios.post(API_ENDPOINTS.logout, {}, {
-        headers: { "Content-Type": "application/json" },
-        withCredentials: true
-      });
-
+      const response = await axios.request(options);;
       dispatch(logout())
       console.log(response.data);
     } catch (error) {
