@@ -14,6 +14,8 @@ const RegistrationForm = () => {
     password: ""
   })
 
+  const [loading, setLoading] = useState(false)
+
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -26,6 +28,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.post(API_ENDPOINTS.register, formData)
       setMessage(response?.data?.message || 'Successfully registered!')
@@ -35,11 +38,12 @@ const RegistrationForm = () => {
         email: "",
         password: ""
       })
-
+      setLoading(false)
       setTimeout(() => {
         navigate("/signin")
-      }, 3000);
+      }, 5000);
     } catch (error) {
+      setLoading(false)
       const errorMessage = error.response?.data?.message || 'An error occurred during registration';
       setMessage(errorMessage);
       setMessageType('error')
@@ -59,7 +63,7 @@ const RegistrationForm = () => {
 
           {message &&
             <p className={`${messageType === 'success'
-              ? "border-[1px] border-dashed text-center rounded-full text-sm p-2 text-green-400  border-green-500"
+              ? "border-[1px] border-dashed text-center rounded-full text-sm px-4 py-2 text-green-400  border-green-500"
               : "border-[1px] border-dashed text-center rounded-full text-sm p-2 text-red-400  border-red-500"}`}>
               {message}
             </p>
@@ -99,7 +103,14 @@ const RegistrationForm = () => {
               className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal"
             />
           </div>
-          <button className="bg-[#24CFA6] text-black font-medium text-sm p-2 rounded-sm mt-2">Create Account</button>
+          <button className={`${(loading === false) ? "bg-[#24CFA6] text-black font-medium text-sm p-2 rounded-sm mt-2" : "items-center justify-center flex gap-x-2 bg-[#24CFA6] text-black font-medium text-sm p-1 rounded-sm mt-2"}`}>
+            {(loading === false
+              ? "" 
+              : <div className=" p-0 flex justify-center items-center m-0">
+                  <i className="ri-loader-2-fill text-lg animate-spin-slow m-0"></i>
+                </div>
+            )}Create Account
+          </button>
         </div>
 
       </form>

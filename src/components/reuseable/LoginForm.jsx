@@ -16,6 +16,8 @@ const LoginForm = () => {
     password: ""
   })
 
+  const [loading, setLoading] = useState(false)
+
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -28,6 +30,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const response = await axios.post(API_ENDPOINTS.login,
         formData,
@@ -45,9 +48,13 @@ const LoginForm = () => {
       const data = response.data.data.user;
       dispatch(login(data))
       console.log("user-", data);
+      setLoading(false)
+      setTimeout(() => {
+        navigate('/user-dashboard')
+      }, 1000);
       
-      navigate('/user-dashboard')
     } catch (error) {
+      setLoading(false)
       console.log("error", error)
       setMessageType('error')
       setMessage(error.response?.data.message || 'An error occured duting login user!!')
@@ -93,7 +100,14 @@ const LoginForm = () => {
               className="w-full bg-transparent border-b-[1px] border-gray-500 px-1 py-1 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal"
             />
           </div>
-          <button className="bg-[#24CFA6] text-black font-medium text-sm p-2 rounded-sm mt-2">Continue</button>
+          <button className={`${(loading === false) ? "bg-[#24CFA6] text-black font-medium text-sm p-2 rounded-sm mt-2" : "items-center justify-center flex gap-x-2 bg-[#24CFA6] text-black font-medium text-sm p-1 rounded-sm mt-2"}`}>
+            {(loading === false
+              ? "" 
+              : <div className=" p-0 flex justify-center items-center m-0">
+                  <i className="ri-loader-2-fill text-lg animate-spin-slow m-0"></i>
+                </div>
+            )}Continue
+          </button>
         </div>
 
       </form>

@@ -10,7 +10,7 @@ const Header = () => {
   console.log("Is Authenticated", isAuthenticated)
 
   return (
-    <div className="flex justify-between bg-transparent fixed top-0 left-0 right-0 w-full px-12 py-4">
+    <div className="flex justify-between bg-transparent fixed top-0 left-0 z-10 right-0 w-full px-12 py-4">
       <div>
         <h1 className=" text-2xl font-semibold">Notebook</h1>
       </div>
