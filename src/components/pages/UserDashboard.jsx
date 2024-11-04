@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_ENDPOINTS } from "../../utils/api";
 import { updateUser } from "../../store/slices/authSlice";
+import { toast } from "react-toastify";
+
+import LogoutButton from "../reuseable/LogoutButton.jsx";
 
 const UserDashboard = () => {
   const currentuser = useSelector((state) => state.auth.currentuser);
@@ -36,6 +39,7 @@ const UserDashboard = () => {
         withCredentials: true,
       });
       console.log("Response-", response.data.message);
+      toast.success(response.data.message)
       console.log("Response-", response.data.data.avatar);
       const updatedAvatar = response.data.data.avatar;
       dispatch(updateUser({ avatar: updatedAvatar }))
@@ -45,6 +49,7 @@ const UserDashboard = () => {
       setAvatarFilePreview(null);
     } catch (error) {
       setLoading(false)
+      toast.error(error.response.data.message)
       console.log("Error-", error.response?.data?.message || error.message);
     }
   };
@@ -79,9 +84,20 @@ const UserDashboard = () => {
           <div>
             <h1 className="text-xl font-semibold">{currentuser.fullName}</h1>
             <h1 className="text-sm font-normal text-gray-400">{currentuser.email}</h1>
-
-
           </div>
+        </div>
+
+        {/* <div className="flex justify-between gap-x-4">
+          <div className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal">
+            <h1 className="text-sm font-normal text-gray-400">{currentuser.fullName}</h1>
+          </div>
+          <div className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal">
+            <h1 className="text-sm font-normal text-gray-400">{currentuser.email}</h1>
+          </div>
+        </div> */}
+
+        <div className="flex justify-end ">
+          <LogoutButton />
         </div>
       </div>
 

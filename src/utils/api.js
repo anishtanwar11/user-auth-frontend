@@ -6,4 +6,6 @@ export const API_ENDPOINTS = {
     login: `${BASE_URL}/user/login`,
     logout: `${BASE_URL}/user/logout`,
     avatar: `${BASE_URL}/user/avatar`,
+    forgotPassword: `${BASE_URL}/user/forgot-password`,
+    resetPassword: `${BASE_URL}/user/reset-password`,
 };

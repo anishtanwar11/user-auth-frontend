@@ -11,9 +11,9 @@ const LogoutButton = () => {
     const options = {
       method: 'POST',
       url: API_ENDPOINTS.logout,
-      headers: { 
-        "Content-Type": "application/json", 
-        accept: 'application/json' 
+      headers: {
+        "Content-Type": "application/json",
+        accept: 'application/json'
       },
       withCredentials: true,  // Include credentials (cookies) in the request
     };
@@ -28,7 +28,12 @@ const LogoutButton = () => {
 
   return (
     <div>
-      <button onClick={handleLogout} className="bg-[#24CFA6] text-black font-medium text-base rounded-sm px-4 py-1">Logout</button>
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 w-full font-medium text-base rounded-sm px-4 py-1"
+      >
+        Logout <i className="ri-logout-box-r-line"></i>
+      </button>
     </div>
   )
 }

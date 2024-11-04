@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { API_ENDPOINTS } from "../../utils/api";
+import InputField from "../reuseable/InputField.jsx";
+import SubmitButton from "../reuseable/SubmitButton.jsx";
 
 const RegistrationForm = () => {
 
@@ -68,49 +70,34 @@ const RegistrationForm = () => {
               {message}
             </p>
           }
-          <div className="w-full">
-            <label className="flex flex-col text-gray-500 text-sm leading-9">Full Name</label>
-            <input
-              value={formData.fullName}
-              onChange={handleInput}
-              type="text"
-              name="fullName"
-              placeholder="Full Name"
-              className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal"
-            />
-          </div>
+          <InputField
+            label="Full Name"
+            value={formData.fullName}
+            onChange={handleInput}
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+          />
 
-          <div className="w-full">
-            <label className="flex flex-col text-gray-500 text-sm leading-9">Email</label>
-            <input
-              value={formData.email}
-              onChange={handleInput}
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal"
-            />
-          </div>
+          <InputField
+            label="Email"
+            value={formData.email}
+            onChange={handleInput}
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
 
-          <div className="w-full">
-            <label className="flex flex-col text-gray-500 text-sm leading-9">Password</label>
-            <input
-              value={formData.password}
-              onChange={handleInput}
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal"
-            />
-          </div>
-          <button className={`${(loading === false) ? "bg-[#24CFA6] text-black font-medium text-sm p-2 rounded-sm mt-2" : "items-center justify-center flex gap-x-2 bg-[#24CFA6] text-black font-medium text-sm p-1 rounded-sm mt-2"}`}>
-            {(loading === false
-              ? "" 
-              : <div className=" p-0 flex justify-center items-center m-0">
-                  <i className="ri-loader-2-fill text-lg animate-spin-slow m-0"></i>
-                </div>
-            )}Create Account
-          </button>
+          <InputField
+            label="Password"
+            value={formData.password}
+            onChange={handleInput}
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+
+          <SubmitButton loading={loading} text="Create Account" />
         </div>
 
       </form>
