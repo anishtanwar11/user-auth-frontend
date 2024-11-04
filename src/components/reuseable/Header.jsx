@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux";
+import LogoPng from "../../assets/Book-Logo-1.png"
 
 const Header = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
@@ -13,7 +14,7 @@ const Header = () => {
     <div className="flex items-center justify-between bg-transparent fixed top-0 left-0 z-10 right-0 w-full px-12 py-4">
       <Link to="/" className="flex items-center justify-center gap-x-2">
         <img 
-          src={'src/assets/book-logo-1.png'} 
+          src={LogoPng} 
           alt="site-logo"
           className="w-8 h-auto"
         />
