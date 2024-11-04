@@ -10,10 +10,15 @@ const Header = () => {
   console.log("Is Authenticated", isAuthenticated)
 
   return (
-    <div className="flex justify-between bg-transparent fixed top-0 left-0 z-10 right-0 w-full px-12 py-4">
-      <div>
-        <h1 className=" text-2xl font-semibold">Notebook</h1>
-      </div>
+    <div className="flex items-center justify-between bg-transparent fixed top-0 left-0 z-10 right-0 w-full px-12 py-4">
+      <Link to="/" className="flex items-center justify-center gap-x-2">
+        <img 
+          src={'src/assets/book-logo-1.png'} 
+          alt="site-logo"
+          className="w-8 h-auto"
+        />
+        <h1 className=" text-2xl font-semibold font-[neuemachina]">Notebook</h1>
+      </Link>
 
       <div className=" flex gap-x-8">
         <Link to="/" className="mt-1">Home</Link>
@@ -22,7 +27,7 @@ const Header = () => {
           ? <>
             <Link
               to="/user-dashboard"
-              className="w-8 h-8 flex items-center justify-center rounded-full text-black font-medium text-[1.25rem] bg-[#24CFA6]"
+              className="font-[neuemachina] w-8 h-8 flex items-center justify-center rounded-full text-black font-semibold text-lg bg-[#24CFA6]"
             >
               {userNameFirstLetter}
             </Link>

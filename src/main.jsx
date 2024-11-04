@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <App />
         <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -25,7 +25,7 @@ createRoot(document.getElementById('root')).render(
         draggable
         pauseOnHover
         theme="dark"
-        transition: Zoom
+        transition: Slide
         />
       </PersistGate>
     </Provider>

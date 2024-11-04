@@ -5,9 +5,16 @@
 body, html{
     background-color: #0d100c;
     color: #f9fafb;
+    font-family: helvetica1;
 }
 
 @font-face {
     font-family: helvetica1;
     src: url(./assets/fonts/HelveticaNowDisplay-Regular_5Mzhp8KlA8_CAVTbnsPOM.woff2);
 }
+
+@font-face {
+    font-family: neuemachina;
+    src: url(./assets/fonts/NeueMachina-Light_gwWCZxVuQl.ttf);
+}
+
