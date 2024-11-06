@@ -64,10 +64,10 @@ const UserDashboard = () => {
   console.log("User-----", currentuser);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center relative">
-      <div className="w-full max-w-[700px] flex gap-y-10 justify-center flex-col bg-[#121212] px-20 py-8 rounded-lg">
-        <h1 className="text-3xl font-normal font-[neuemachina]">Account Center</h1>
-        <div className="flex flex-row gap-x-5 items-center">
+    <div className="px-3 w-screen h-screen flex items-center justify-center relative">
+      <div className="w-full max-w-[700px] flex gap-y-10 justify-center flex-col bg-[#121212] px-4 sm:px-20 py-8 rounded-lg">
+        <h1 className="text-3xl font-normal font-[neuemachina] text-center sm:text-left">Account Center</h1>
+        <div className="flex flex-col text-center sm:text-left gap-y-4 sm:flex-row gap-x-5 items-center">
           <div className="relative">
             <div className={`${avatar ? "w-32 h-32 overflow-hidden rounded-full bg-[#24CFA6]" : "w-32 h-32 overflow-hidden rounded-full items-center justify-center flex bg-[#24CFA6]"}`}>
               {avatar ? (
@@ -87,16 +87,7 @@ const UserDashboard = () => {
           </div>
         </div>
 
-        {/* <div className="flex justify-between gap-x-4">
-          <div className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal">
-            <h1 className="text-sm font-normal text-gray-400">{currentuser.fullName}</h1>
-          </div>
-          <div className="w-full bg-[#1E1E1E] px-4 py-2 outline-none rounded-sm text-sm placeholder:text-xs placeholder:text-gray-600 placeholder:font-normal">
-            <h1 className="text-sm font-normal text-gray-400">{currentuser.email}</h1>
-          </div>
-        </div> */}
-
-        <div className="flex justify-end ">
+        <div className="flex sm:justify-end justify-center">
           <LogoutButton />
         </div>
       </div>

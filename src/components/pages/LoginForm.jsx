@@ -53,7 +53,7 @@ const LoginForm = () => {
       dispatch(login(data))
       console.log("user-", data);
       setLoading(false)
-      navigate('/user-dashboard')
+      navigate('/')
     } catch (error) {
       setLoading(false)
       console.log("error", error)

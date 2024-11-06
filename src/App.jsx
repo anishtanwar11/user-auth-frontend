@@ -7,6 +7,8 @@ import ResetPassword from "./components/pages/ResetPassword.jsx"
 import Home from "./components/pages/Home"
 import UserDashboard from "./components/pages/UserDashboard"
 import ProtectedRoute from "./components/ProtectedRoute"
+import NotebookDashboard from "./components/pages/NotebookDashboard.jsx"
+import SectionAndNotesPage from "./components/pages/SectionAndNotesPage.jsx"
 
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/reset-password/:resetToken" element={<ResetPassword />}/>
         
         <Route element={<ProtectedRoute />}>
+          <Route path="/my-notebook" element={<NotebookDashboard />} />
+          <Route path="/notebook/:notebookId" element={<SectionAndNotesPage/>}/>
           <Route path="/user-dashboard" element={<UserDashboard />} />
         </Route>
       </Routes>

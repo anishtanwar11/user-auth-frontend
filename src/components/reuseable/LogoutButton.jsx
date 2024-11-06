@@ -18,7 +18,7 @@ const LogoutButton = () => {
       withCredentials: true,  // Include credentials (cookies) in the request
     };
     try {
-      const response = await axios.request(options);;
+      const response = await axios.request(options);
       dispatch(logout())
       console.log(response.data);
     } catch (error) {

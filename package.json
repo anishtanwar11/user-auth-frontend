@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
+    "@tinymce/tinymce-react": "^5.1.1",
     "axios": "^1.7.7",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
@@ -19,7 +20,8 @@
     "react-router-dom": "^6.27.0",
     "react-toastify": "^10.0.6",
     "redux": "^5.0.1",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "tinymce": "^7.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
