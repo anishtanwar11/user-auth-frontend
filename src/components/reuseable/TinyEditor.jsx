@@ -8,8 +8,6 @@ import { API_ENDPOINTS } from "../../utils/api";
 // eslint-disable-next-line react/prop-types
 const TinyEditor = ({ initialValue, pageID, pageTitle, setIsReload}) => {
   const apiKey = import.meta.env.VITE_TINY_EDITOR_API_KEY;
-
-  console.log("Editor API key-", apiKey)
   const [content, setContent] = useState('');
 
 
