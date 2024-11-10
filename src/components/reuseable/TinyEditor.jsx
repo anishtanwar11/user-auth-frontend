@@ -45,7 +45,7 @@ const TinyEditor = ({ initialValue, pageID, pageTitle, setIsReload}) => {
   return (
     <div className="relative">
       <Editor
-        apiKey="mcsvow0jw1e94pevhlkj6haro6pacj2rv4xye2d1v138v6wx"
+        apiKey={apiKey}
         initialValue={initialValue}
         value={content}
         init={{
