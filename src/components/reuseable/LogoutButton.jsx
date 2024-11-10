@@ -2,6 +2,7 @@ import axios from "axios";
 import { API_ENDPOINTS } from "../../utils/api";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
+import { removeNotebooks } from "../../store/slices/notebookSlice";
 
 const LogoutButton = () => {
 
@@ -20,6 +21,7 @@ const LogoutButton = () => {
     try {
       const response = await axios.request(options);
       dispatch(logout())
+      dispatch(removeNotebooks())
       console.log(response.data);
     } catch (error) {
       console.log("Logout error", error)

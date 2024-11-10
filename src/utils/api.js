@@ -11,6 +11,13 @@ export const API_ENDPOINTS = {
     resetPassword: `${BASE_URL}/user/reset-password`,
 
     // NOTEBOOK ROUTE
-    all: `${BASE_URL}/notebook/all`,
-    create: `${BASE_URL}/notebook/create`,
+    allNotebooks: `${BASE_URL}/notebook/all`,
+    createNotebook: `${BASE_URL}/notebook/create`,
+
+    // SECTION ROUTE
+    allSections: `${BASE_URL}/notebook`,
+    createSection: `${BASE_URL}/notebook`,
+
+    // PAGES ROUTE
+    pages: `${BASE_URL}/notebook/section`,
 };
