@@ -9,6 +9,7 @@ import UserDashboard from "./components/pages/UserDashboard"
 import ProtectedRoute from "./components/ProtectedRoute"
 import NotebookDashboard from "./components/pages/NotebookDashboard.jsx"
 import SectionAndNotesPage from "./components/pages/SectionAndNotesPage.jsx"
+import Developer from "./components/pages/Developer.jsx"
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/signup" element={<RegistrationForm />} />
         <Route path="/forgot-password" element={<ForgotPassword />}/>
         <Route path="/reset-password/:resetToken" element={<ResetPassword />}/>
+        <Route path="/developer" element={<Developer />}/>
         
         <Route element={<ProtectedRoute />}>
           <Route path="/my-notebook" element={<NotebookDashboard />} />

@@ -18,3 +18,23 @@ body, html{
     src: url(./assets/fonts/NeueMachina-Light_gwWCZxVuQl.ttf);
 }
 
+.menu-item{
+    @apply hover:bg-[#1e1e1e] px-3 py-2 text-sm cursor-pointer;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+    background-color: #0d100c;
+    
+}
+::-webkit-scrollbar-thumb{
+    background-color: #3d3d3d;
+    border-radius: 25px;
+}
+
+#section-y-scroll::-webkit-scrollbar{
+    width: 3px;
+}
+#section-y-scroll::-webkit-scrollbar-thumb{
+    border-radius: 0px;
+}

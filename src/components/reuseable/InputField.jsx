@@ -1,6 +1,6 @@
 
 // eslint-disable-next-line react/prop-types
-const InputField = ({ label ,value, onChange, type='text', name, placeholder }) => {
+const InputField = ({inputRef, label ,value, onChange, type='text', name, placeholder }) => {
   return (
     <div className="w-full">
       {label && (
@@ -9,6 +9,7 @@ const InputField = ({ label ,value, onChange, type='text', name, placeholder }) 
         </label>
       )}
       <input
+        ref={inputRef}
         value={value}
         onChange={onChange}
         type={type}

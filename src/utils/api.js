@@ -13,10 +13,12 @@ export const API_ENDPOINTS = {
     // NOTEBOOK ROUTE
     allNotebooks: `${BASE_URL}/notebook/all`,
     createNotebook: `${BASE_URL}/notebook/create`,
+    notebook: `${BASE_URL}/notebook`,
 
     // SECTION ROUTE
     allSections: `${BASE_URL}/notebook`,
     createSection: `${BASE_URL}/notebook`,
+    sections: `${BASE_URL}/notebook/section`,
 
     // PAGES ROUTE
     pages: `${BASE_URL}/notebook/section`,

@@ -11,7 +11,7 @@ const TinyEditor = ({ initialValue, pageID, pageTitle, setIsReload}) => {
   const [content, setContent] = useState('');
 
 
-  console.log("Page ID in editor-", pageID)
+  // console.log("Page ID in editor-", pageID)
   const handleEditorChange = (newContent) => {
     console.log("new-", newContent)
     setContent(newContent)
@@ -20,9 +20,11 @@ const TinyEditor = ({ initialValue, pageID, pageTitle, setIsReload}) => {
   const saveNote = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`${API_ENDPOINTS.pages}/page/${pageID}`, { content, pageTitle }, { withCredentials: true });
-      console.log("response content editor-", response)
-      console.log("Page Title-", pageTitle)
+      const response = await axios.put(
+        `${API_ENDPOINTS.pages}/page/${pageID}`,
+        { content, pageTitle }, 
+        { withCredentials: true }
+      );
       toast.success(response.data.message || "Page Updated")
     } catch (error) {
       console.log(error.response?.data.message)
@@ -47,7 +49,7 @@ const TinyEditor = ({ initialValue, pageID, pageTitle, setIsReload}) => {
         initialValue={initialValue}
         value={content}
         init={{
-          height: 510,
+          height: 500,
           menubar: true,
           plugins: [
             'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
