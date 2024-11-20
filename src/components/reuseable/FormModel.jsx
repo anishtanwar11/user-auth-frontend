@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react"
 import InputField from "./InputField.jsx"
 
-const FormModel = ({ 
-    onSubmit, 
-    value, 
-    onChange, 
-    text, 
-    onClick, 
-    text1, 
-    text2, 
-    label, 
-    message, 
-    messageType ,
+const FormModel = ({
+    onSubmit,
+    value,
+    onChange,
+    text,
+    onClick,
+    text1,
+    text2,
+    label,
+    message,
+    messageType,
+    loading,
 
     createbook,
     createBookModal,
@@ -22,10 +23,10 @@ const FormModel = ({
     const inputRef = useRef(null); // Create a ref for the input field
 
     useEffect(() => {
-        if(createbook || createBookModal || updateTitleModel ||updateNotebookTitleModel && inputRef.current){
+        if (createbook || createBookModal || updateTitleModel || updateNotebookTitleModel && inputRef.current) {
             inputRef.current.focus();
         }
-    },[createbook, createBookModal])
+    }, [createbook, createBookModal])
 
     return (
         <div className="z-[12] px-3 w-screen h-screen fixed top-0 left-0 right-0 bg-black/40 flex items-center justify-center">
@@ -40,13 +41,24 @@ const FormModel = ({
 
                 {message && (
                     <p className={`text-xs mt-2 ${messageType === 'error' ? 'text-red-500' : 'text-green-500'}`}>
-                        {message} 
+                        {message}
                     </p>
                 )}
 
                 <div className="w-full flex items-center justify-end gap-x-4 mt-4">
                     <button onClick={onClick} className="bg-white text-black px-3 py-1 rounded-sm text-sm" >{text1}</button>
-                    <button type="submit" className="bg-[#24CFA6] text-black px-3 py-1 rounded-sm text-sm " >{text2}</button>
+                    {/* <button type="submit" className="bg-[#24CFA6] text-black px-3 py-1 rounded-sm text-sm " >{text2}</button> */}
+                    <button
+                        type="submit"
+                        className={`${(loading === false) ? "bg-[#24CFA6] text-black px-3 py-1 rounded-sm text-sm  " : "px-3 flex items-center justify-center gap-x-1 bg-[#24CFA6] text-black text-sm rounded-sm"}`}
+                    >
+                        {(loading === false
+                            ? ""
+                            : <div className=" p-0 flex justify-center items-center m-0">
+                                <i className="ri-loader-2-fill text-lg animate-spin-slow m-0"></i>
+                            </div>
+                        )}{text2}
+                    </button>
                 </div>
             </form>
         </div>

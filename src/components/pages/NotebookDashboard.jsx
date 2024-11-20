@@ -19,9 +19,11 @@ const NotebookDashboard = () => {
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
     const [isReload, setIsReload] = useState(false);
+    const [loading, setLoading] = useState(false) // State for loading animation
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         const options = {
             method: 'POST',
             url: API_ENDPOINTS.createNotebook,
@@ -33,10 +35,12 @@ const NotebookDashboard = () => {
 
             // Dispatch the new notebook to the Redux store
             dispatch(getNotebooks([...notebookTitles, response.data.data]));
+            setLoading(false)
             setCreateBook(false);
             setTitle("");
             toast.success(response.data.message)
         } catch (error) {
+            setLoading(false)
             setMessageType("error");
             setMessage(error.response?.data?.message || "An error occurred.");
         }
@@ -124,6 +128,7 @@ const NotebookDashboard = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     onClick={closeCreateNotebook}
+                    loading={loading}
 
                     createbook={createbook}
                 />

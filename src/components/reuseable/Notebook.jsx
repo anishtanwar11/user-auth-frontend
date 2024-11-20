@@ -18,16 +18,19 @@ const Notebook = ({ searchQuery, notebookTitles, setIsReload }) => {
   const [title, setTitle] = useState(""); // state for notebook title
   const [notebookId, setNotebookId] = useState("")
   const [deleteNotebookModel, setDeleteNotebookModel] = useState(false); // For controlling delete notebook modal
-
+  const [loading, setLoading] = useState(false) // State for loading animation
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.patch(`${API_ENDPOINTS.notebook}/${notebookId}/update`, { title }, { withCredentials: true });
-      setUpdateTitleModel(false);
+      setUpdateNotebookTitleModel(false);
       setIsReload((field) => !field)
       toast.success(response.data.message)
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       toast.error(error.response.data.message)
     }
   }
@@ -45,14 +48,9 @@ const Notebook = ({ searchQuery, notebookTitles, setIsReload }) => {
     setUpdateNotebookTitleModel(false)
   }
 
-  const deleteNotebook = (notebookID) => {
-    console.log("NoteBook ID-", notebookId)
-    setNotebookId(notebookID)
-    setDeleteNotebookModel(true)
-  }
-
   const handleDeleteNotebook = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.delete(`${API_ENDPOINTS.notebook}/${notebookId}/delete`, { withCredentials: true });
       // Filter the deleted notebook from the Redux store
@@ -60,14 +58,22 @@ const Notebook = ({ searchQuery, notebookTitles, setIsReload }) => {
       console.log("Updated Notebook:-", updatedNotebooks)
 
       dispatch(getNotebooks(updatedNotebooks)); // Update Redux state
-
+      setLoading(false)
       setDeleteNotebookModel(false)
       // setIsReload((field) => !field)
       toast.success(response.data.message)
     } catch (error) {
+      setLoading(false)
       toast.error(error.response?.data?.message)
     }
   }
+
+  const deleteNotebook = (notebookID) => {
+    console.log("NoteBook ID-", notebookId)
+    setNotebookId(notebookID)
+    setDeleteNotebookModel(true)
+  }
+
   // Filtered notebooks based on search query
   // eslint-disable-next-line react/prop-types
   const filteredNotebooks = notebookTitles.filter((notebook) =>
@@ -92,7 +98,7 @@ const Notebook = ({ searchQuery, notebookTitles, setIsReload }) => {
           <div className="opacity-0 group-hover:opacity-100 duration-200">
             <i
               onClick={() => notebook(elem._id, elem.title)}
-              className="ri-edit-2-fill mr-4 cursor-pointer hover:text-white">
+              className="ri-pencil-fill mr-4 cursor-pointer hover:text-white">
             </i>
             <i
               onClick={() => deleteNotebook(elem._id)}
@@ -112,6 +118,7 @@ const Notebook = ({ searchQuery, notebookTitles, setIsReload }) => {
           onClick={closeUpdateTitleModel}
           value={title}
           onChange={(e) => setTitle(e.target.value)} 
+          loading={loading}
 
           updateNotebookTitleModel={updateNotebookTitleModel}
         />
@@ -125,6 +132,7 @@ const Notebook = ({ searchQuery, notebookTitles, setIsReload }) => {
           text2="Cancle"
           onClickDelete={handleDeleteNotebook}
           onClickCancle={() => setDeleteNotebookModel(false)}
+          loading={loading}
         />
       )}
 

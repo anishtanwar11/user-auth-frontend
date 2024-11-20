@@ -22,7 +22,7 @@ const Header = () => {
   },[])
 
   return (
-    <div className="flex items-center justify-between bg-transparent fixed top-0 left-0 z-10 right-0 w-full px-4 md:px-12  py-4">
+    <div className="bg-[#0d100c] flex items-center justify-between fixed z-10 top-0 left-0 right-0 w-full px-4 md:px-12  py-4">
       <Link to="/" className="flex items-center justify-center gap-x-2">
         <img
           src={LogoPng}

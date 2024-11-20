@@ -37,6 +37,8 @@ const SectionAndNotesPage = () => {
   const [sectionMenu, setSectionMenu] = useState(null); // Track open menu by section ID
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
 
+  const [loading, setLoading] = useState(false) // State for loading animation
+
   // Get the current page data based on the selected page ID
   const currentPage = pages.find((page) => page._id === pageID) || {};
 
@@ -61,7 +63,7 @@ const SectionAndNotesPage = () => {
   // Update the page title in real-time in the pages array
   const handlePageTitleChange = (e) => {
     const updatedTitle = e.target.value;
-    if (updatedTitle.length > 20) {
+    if (updatedTitle.length > 25) {
       toast.error("Page title should be less than or equlas to 20 words");
       return;
     }
@@ -119,17 +121,20 @@ const SectionAndNotesPage = () => {
   // Handle creating a new section
   const handleCreateSection = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.post(
         `${API_ENDPOINTS.createSection}/${notebookId}/section/create`,
         { title },
         { withCredentials: true }
       );
+      setLoading(false)
       setSections((prev) => [...prev, response.data.data]);
       setCreateBookModal(false);
       setTitle("");
       toast.success(response.data.message)
     } catch (error) {
+      setLoading(false)
       setMessageType("error");
       setMessage(error.response?.data?.message || error.message || "An unexpected error occurred.");
     }
@@ -159,12 +164,15 @@ const SectionAndNotesPage = () => {
 
   const handleUpdateSectionTitle = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.patch(`${API_ENDPOINTS.sections}/${sectionID}/update`, { title }, { withCredentials: true });
+      setLoading(false)
       setUpdateTitleModel(false)
       setIsReload((feild) => !feild)
       toast.success(response.data.message)
     } catch (error) {
+      setLoading(false)
       toast.error(error.response.data.message || "An unexpected error occurred.")
     }
   }
@@ -177,12 +185,15 @@ const SectionAndNotesPage = () => {
 
   const handleDeleteSection = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.delete(`${API_ENDPOINTS.sections}/${sectionID}/delete`, { withCredentials: true });
+      setLoading(false)
       setDeleteSectionModel(false)
       setIsReload((feild) => !feild)
       toast.success(response.data.message)
     } catch (error) {
+      setLoading(false)
       toast.error(error.response.data.message || "An unexpected error occurred.")
     }
   }
@@ -488,6 +499,7 @@ const SectionAndNotesPage = () => {
           text1="Cancel"
           text2="Create"
           onClick={closeCreateSectionModal}
+          loading={loading}
 
           createBookModal={createBookModal}
         />
@@ -505,6 +517,7 @@ const SectionAndNotesPage = () => {
           onClick={() => setUpdateTitleModel(false)}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          loading={loading}
 
           updateTitleModel={updateTitleModel}
         />
@@ -518,6 +531,7 @@ const SectionAndNotesPage = () => {
           text2="Cancle"
           onClickDelete={handleDeleteSection}
           onClickCancle={() => setDeleteSectionModel(false)}
+          loading={loading}
         />
       )}
     </div>
