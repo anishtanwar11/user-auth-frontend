@@ -57,8 +57,9 @@ const Home = () => {
 
             </div>
 
-            <div className=" flex items-center justify-center w-full mt-20 mb-16">
-              <h1 className="text-center text-2xl sm:text-5xl font-[neuemachina] font-bold">Design & Developed by <br/><span className="text-[#24CFA6]"> Anish Tanwar</span></h1>
+            <div className=" flex flex-col items-center justify-center w-full mt-10 mb-16 pt-10 border-t-[1px] border-gray-700">
+              <h1 className="text-center text-2xl sm:text-5xl font-[neuemachina] font-bold">Designed & Developed by <br/><span className="text-[#24CFA6]"> Anish Tanwar</span></h1>
+              <p className="text-xs font-normal text-gray-400 mt-4">Last updated by Anish on November 20, 2024, 23:52 PM</p>
             </div>
           </div>
         </>
