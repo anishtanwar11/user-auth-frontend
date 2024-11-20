@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import NotebookDashboard from "./NotebookDashboard"
 import { Link } from "react-router-dom"
 
-import Hero1 from "../../assets/hero/hero-img-1.jpg";
+import Hero1 from "../../assets/hero/Hero-Img-1.jpg";
 import Hero2 from "../../assets/hero/hero-img-2.jpg";
 
 
