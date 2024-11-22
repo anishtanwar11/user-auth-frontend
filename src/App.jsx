@@ -10,9 +10,10 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import NotebookDashboard from "./components/pages/NotebookDashboard.jsx"
 import SectionAndNotesPage from "./components/pages/SectionAndNotesPage.jsx"
 import Developer from "./components/pages/Developer.jsx"
-
+import useRefreshToken from "./hooks/useRefreshToken.js"
 
 const App = () => {
+  // useRefreshToken();
 
   return (
     <BrowserRouter>

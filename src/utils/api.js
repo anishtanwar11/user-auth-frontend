@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
     // AUTH ROUTE
     register: `${BASE_URL}/user/register`,
     login: `${BASE_URL}/user/login`,
+    refreshToken: `${BASE_URL}/user/refresh-token`,
     logout: `${BASE_URL}/user/logout`,
     avatar: `${BASE_URL}/user/avatar`,
     forgotPassword: `${BASE_URL}/user/forgot-password`,
